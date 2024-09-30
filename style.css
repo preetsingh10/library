@@ -1,25 +1,34 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 h1 {
-  color: white;
+  color: rgb(14, 14, 14);
+  background-color: rgba(219, 218, 218, 0.49);
   text-align: center;
-  margin-bottom: 100px;
+  margin-bottom: 10px;
+}
+.new-book-button{
+    justify-self: end;
 }
 body {
   background-image: url(images/library.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   padding: 50px;
+  display: grid;
+  gap: 20px;
 }
 
 .main {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
   gap: 50px;
-
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  overflow: scroll;
+  height: 70vh;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 0.51fr));
 }
 .book-container {
   border-radius: 9px;
@@ -32,4 +41,81 @@ body {
   flex-direction: column;
   justify-content: space-between;
   gap: 15px;
+ overflow: scroll;
+ min-height:fit-content;
+max-height: 40%;
+  
 }
+.standard-button{
+    padding: 1em 2em;
+    font-size: 20px;
+    background-color: rgba(224, 225, 218, 0.751);
+    backdrop-filter: blur(10px);
+    border-radius: 9px;
+    border: none;
+    cursor: pointer;
+
+}
+.remove-book-button{
+    padding: 10px;
+    font-size: 17px;
+    font-weight: 300;
+    background-color: rgba(255, 0, 0, 0.753);
+    color: white;
+}
+
+.read-button{
+  padding: 10px;
+  background-color: rgba(93, 202, 126, 0.566);
+}
+
+.new-book-dialog {
+  background-color: rgba(28, 27, 27, 0.629);
+  border-radius: 10px;
+
+  align-self: center;
+  justify-self: center;
+  width: fit-content;
+  color: white;
+  border: none;
+  padding: 50px;
+  backdrop-filter: blur(4px);
+
+}
+.new-book-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.new-book-form label {
+  font-size: 25px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+.new-book-form input {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 15px;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: rgba(250, 245, 245, 0.484);
+  color: rgb(9, 9, 9);
+}
+.new-book-form input:focus {
+  outline: none;
+  box-shadow: 0px 0px 3px white;
+}
+.add-book-form-button{
+    grid-area: 5/1/5/3;
+    background-color: rgb(51, 51, 235);
+    color: white;
+}
+.cancel-book-form-button{
+    grid-area: 6/1/6/3;
+    background-color: rgba(255, 0, 0, 0.834);
+    backdrop-filter: blur(10px);
+    color: white;
+}
+
+
