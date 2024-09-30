@@ -16,13 +16,15 @@ newBookButton.addEventListener("click", () => {
 const newBookForm = document.querySelector(".new-book-form"); // Form for new book input
 
 // library array
-const book1 = new Book("Mechant Of Venice", "Shakespeare", 1090); // Sample book 1
-const book2 = new Book("Hamlet", "Shakespeare", 1978); // Sample book 2
+const book1 = new Book("Laal Kittab", "Arsh Singh", 6969); // Sample book 2
+const book2 = new Book('kala Jaadu','Bhindaaa', 69)
+const book3 = new Book("Mechant Of Venice", "Shakespeare", 1090); // Sample book 1
 
 // Array to store all books
 const myLibrary = [
   book1,
   book2,
+  book3
 ];
 
 // Book constructor function
