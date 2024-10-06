@@ -15,41 +15,32 @@ newBookButton.addEventListener("click", () => {
 // form elements
 const newBookForm = document.querySelector(".new-book-form"); // Form for new book input
 
-// library array
-const book1 = new Book("Laal Kittab", "Arsh Singh", 6969); // Sample book 2
-const book2 = new Book('kala Jaadu','Bhindaaa', 69)
-const book3 = new Book("Mechant Of Venice", "Shakespeare", 1090); // Sample book 1
-
-// Array to store all books
-const myLibrary = [
-  book1,
-  book2,
-  book3
-];
-
-// Book constructor function
-function Book(name, author, pages) {
-  this.name = name; // Book name
-  this.author = author; // Book author
-  this.pages = pages; // Number of pages
-  this.readStatus = false; // Initial read status set to false
+class Book {
+  // Book constructor function
+  constructor(name, author, pages) {
+    this.name = name; // Book name
+    this.author = author; // Book author
+    this.pages = pages; // Number of pages
+    this.readStatus = false; // Initial read status set to false
+  }
 }
 
-// Function to add a new book to the library
-function addBookToLibrary(newBook) {
-  myLibrary.push(newBook); // Push the new book into the library array
-}
+  // Function to add a new book to the library
+  function addBookToLibrary(newBook) {
+    myLibrary.push(newBook); // Push the new book into the library array
+  }
+  // Function to change the read status (not fully implemented)
+  function changeReadStatus() {
+    Book.prototype.readStatus = true; // Sets readStatus for all books (not recommended)
+    console.log(myLibrary); // Log the current state of the library
+  }
 
-// Function to change the read status (not fully implemented)
-function changeReadStatus(){
-  Book.prototype.readStatus =  true // Sets readStatus for all books (not recommended)
-  console.log(myLibrary) // Log the current state of the library
-}
 
 // Function to render library items on the page
 function showLibrary() {
   bodyDivSelector.innerHTML = ""; // Clear previous book entries
-  myLibrary.forEach((book, index) => { // Iterate over each book in the library
+  myLibrary.forEach((book, index) => {
+    // Iterate over each book in the library
     const div = document.createElement("div"); // Create a container for the book
     div.classList = "book-container"; // Add class for styling
 
@@ -62,8 +53,10 @@ function showLibrary() {
     const pagesOfTheBook = document.createElement("h4"); // Create element for book pages
     pagesOfTheBook.textContent = `Pages ~ ${book.pages}`; // Set pages text
 
-    const statusOfTheBook = document.createElement('p'); // Create element for read status
-    statusOfTheBook.textContent = `${book.readStatus=== true ? 'Already Read':'Not Read Yet'}`; // Set status text
+    const statusOfTheBook = document.createElement("p"); // Create element for read status
+    statusOfTheBook.textContent = `${
+      book.readStatus === true ? "Already Read" : "Not Read Yet"
+    }`; // Set status text
 
     const removeBook = document.createElement("button"); // Create button to remove the book
     removeBook.classList = "remove-book-button standard-button"; // Add class for styling
@@ -75,21 +68,21 @@ function showLibrary() {
       showLibrary(); // Refresh the displayed library
     });
 
-    const readButton = document.createElement('button'); // Create button for changing read status
-    readButton.classList = 'read-button standard-button'; // Add class for styling
+    const readButton = document.createElement("button"); // Create button for changing read status
+    readButton.classList = "read-button standard-button"; // Add class for styling
 
     // Check if the book has been read and set button properties accordingly
-    if(book.readStatus === false){
-      readButton.textContent = 'Read'; // Set button text for unread books
-      readButton.addEventListener('click',()=>{
+    if (book.readStatus === false) {
+      readButton.textContent = "Read"; // Set button text for unread books
+      readButton.addEventListener("click", () => {
         book.readStatus = true; // Mark the book as read
         showLibrary(); // Refresh the displayed library
       });
     } else {
-      readButton.textContent = 'Not Read'; // Set button text for read books
-      readButton.style.backgroundColor = 'blue'; // Set button background color
-      readButton.style.color = 'white'; // Set button text color
-      readButton.addEventListener('click',()=>{
+      readButton.textContent = "Not Read"; // Set button text for read books
+      readButton.style.backgroundColor = "blue"; // Set button background color
+      readButton.style.color = "white"; // Set button text color
+      readButton.addEventListener("click", () => {
         book.readStatus = false; // Mark the book as not read
         showLibrary(); // Refresh the displayed library
       });
@@ -106,6 +99,14 @@ function showLibrary() {
   });
 }
 
+// library array
+const book1 = new Book("Laal Kittab", "Arsh Singh", 6969); // Sample book 2
+const book2 = new Book("kala Jaadu", "Bhindaaa", 69);
+const book3 = new Book("Mechant Of Venice", "Shakespeare", 1090); // Sample book 1
+
+// Array to store all books
+const myLibrary = [book1, book2, book3];
+
 // Event listener for the new book form submission
 newBookForm.addEventListener("submit", (e) => {
   e.preventDefault(); // Prevent default form submission
@@ -113,17 +114,19 @@ newBookForm.addEventListener("submit", (e) => {
   const name = formData.get("nameOfTheBook"); // Get book name from the form
   const author = formData.get("authorOfTheBook"); // Get author from the form
   const pages = formData.get("pagesOfTheBook"); // Get pages from the form
-  const readStatus = formData.get('read-status'); // Get read status from the form
+  const readStatus = formData.get("read-status"); // Get read status from the form
 
   // Create a new book object
   const newBook = new Book(name, author, pages);
   // Set the read status based on form input
-  readStatus === null ? newBook.readStatus = false : newBook.readStatus = true;
+  readStatus === null
+    ? (newBook.readStatus = false)
+    : (newBook.readStatus = true);
 
   // Add the new book to the library
   addBookToLibrary(newBook);
   console.log("the book is added"); // Log book addition
-  console.log('read status', readStatus); // Log read status
+  console.log("read status", readStatus); // Log read status
   showLibrary(); // Refresh the displayed library
   newBookForm.reset(); // Reset the form
   newBookDialog.close(); // Close the dialog
